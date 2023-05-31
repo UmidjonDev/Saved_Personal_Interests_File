@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Calculator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <style>
+        *{
+            padding:0%;
+            margin:0%;
+        }
+        form{
+            background-color: lime;
+        }
+    </style>
+</head>
+<body>
+    <form class="w-25 h-100">
+        <h1 class="text-center text-red" >Simple Calculator</h1>
+		<input type="text" id="num1" readonly class="form-control form-control-lg text-right">
+        <div>
+            <div class="DigitButtons btn-group btn-block">
+                <input type="button" value="1" onclick="NumberWriter(1)" class="btn btn-warning rounded-pill">
+                <input type="button" value="2" onclick="NumberWriter(2)"class="btn btn-warning rounded-pill">
+                <input type="button" value="3" onclick="NumberWriter(3)"class="btn btn-warning rounded-pill">
+                <input type="button" value="Divide" onclick="getVariable(4)"class="btn btn-warning rounded-pill">
+            </div>
+            <div class="DigitButtons btn-group btn-block">
+                <input type="button" value="4" onclick="NumberWriter(4)"class="btn btn-warning rounded-pill">
+                <input type="button" value="5" onclick="NumberWriter(5)"class="btn btn-warning rounded-pill">
+                <input type="button" value="6" onclick="NumberWriter(6)"class="btn btn-warning rounded-pill">
+                <input type="button" value="Multiply" onclick="getVariable('multiply')"class="btn btn-warning rounded-pill">
+            </div>
+            <div class="DigitButtons btn-group btn-block">
+                <input type="button" value="7" onclick="NumberWriter(7)"class="btn btn-warning rounded-pill">
+                <input type="button" value="8" onclick="NumberWriter(8)"class="btn btn-warning rounded-pill">
+                <input type="button" value="9" onclick="NumberWriter(9)"class="btn btn-warning rounded-pill">
+                <input type="button" value="Subtract" onclick="getVariable('subtract')"class="btn btn-warning rounded-pill">
+            </div>
+            <div class="DigitButtons btn-group btn-block">
+                <input type="button" value="0" onclick="NumberWriter(0)"class="btn btn-warning rounded-pill">
+                <input type="button" value="." onclick="DotWriter()"class="btn btn-warning rounded-pill">
+                <input type="button" value="=" onclick="result()"class="btn btn-warning rounded-pill">
+                <input type="button" value="Add" onclick="getVariable('add')"class="btn btn-warning rounded-pill">
+            </div>	
+        </div>
+	</form>
+	
+	<script>
+        function NumberWriter(number){
+            document.getElementById("num1").value+=String(number);
+        }
+        function DotWriter(){
+            let dotNumber=0;
+            let availableInput=document.getElementById("num1").value;
+            if(dotNumber==0){
+                availableInput+=".";
+                dotNumber+=1;
+            }
+
+        }
+        let num1;
+        let num2;
+        let sign;
+		function getVariable(mathematicalSign) {
+			num1 = parseFloat(document.getElementById("num1").value);
+            document.getElementById("num1").value="";
+            sign=mathematicalSign;
+		}
+        function result() {
+			num2 = parseFloat(document.getElementById("num1").value);
+            document.getElementById("num1").value = "";
+            let result=0;
+            if(sign=='add'){
+                result = num1 + num2;
+            }
+            if(sign=='subtract'){
+                result = num1 - num2;
+            }
+            if(sign=='multiply'){
+                result = num1 * num2;
+            }
+            if(sign==4){
+                result = num1 / num2;
+            }
+			document.getElementById("num1").value = result;
+		}
+	</script>
+</body>
+</html>
